@@ -4,7 +4,6 @@
 print 'Olá, Seja bem-vindo ao jogo: MAD-LIBS!'
 print '-' * 40
 print '-' * 40
-print 'Para iniciar, escolha uma faixa de dificuldade: ( iniciante | amador | profissional):'
 
 # os níveis disponíveis para o jogo.
 niveis = ['iniciante', 'amador', 'profissional']
@@ -31,30 +30,22 @@ chances = ['5', '3', '1']
 # O usuário vai escolher um nível nesse momento.
 iniciante = frases[0]
 amador = frases[1]
-profissional = frases [2]
-def selecionar_nivel():
-	'''O nível será digitado pelo usuário, o programa deve esperar o
-	jogador digitar o nível que deseja jogar, jogador deve selecionar
-	um nivel válido, caso não, o programa deve mostrar uma mensagem
-	dizendo a ele que precisa informar um nivel válido'''
-	nivel = raw_input('Escolha um nível: ( iniciante | amador | profissional):').lower()
-	while raw_input:
-		if nivel == niveis[0]:
-			return iniciante
-		if nivel == niveis[1]:
-			return amador
-		if nivel == niveis[2]:
-			return profissional
-		else:
-                        return 'Informe um nível válido'
+profissional = frases[2]
+'''O nível será digitado pelo usuário, o programa deve esperar o
+jogador digitar o nível que deseja jogar, após p jogador selecionar
+um nivel válido o programa defe retornar a pergunta conforme o nível
+selecionado, caso não, o programa deve mostrar uma mensagem
+dizendo a ele que precisa informar um nivel válido'''
 
+escolha_nivel = raw_input('Para iniciar, escolha uma faixa de dificuldade: ( iniciante | amador | profissional):').lower()
 
-
-        
-                
-	
-
-#def selecionar_nivel_errado():
-#	while raw_input != niveis:
-#		return 'Digite um nível válido'
-
+if escolha_nivel == niveis[0]:
+    print iniciante
+else:
+    if escolha_nivel == niveis[1]:
+        print amador
+    else:
+        if escolha_nivel == niveis[2]:
+            print profissional
+        else:
+            print 'Insira um nivel válido!'
