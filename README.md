@@ -37,15 +37,36 @@ um nivel válido o programa defe retornar a pergunta conforme o nível
 selecionado, caso não, o programa deve mostrar uma mensagem
 dizendo a ele que precisa informar um nivel válido'''
 
-escolha_nivel = raw_input('Para iniciar, escolha uma faixa de dificuldade: ( iniciante | amador | profissional):').lower()
-
-if escolha_nivel == niveis[0]:
-    print iniciante
-else:
-    if escolha_nivel == niveis[1]:
-        print amador
-    else:
-        if escolha_nivel == niveis[2]:
-            print profissional
+def escolha_nivel():
+    '''As entradas possíveis são iniciante, amador e profissional, porém existem entradas imprevissíveis que a função
+    terá que resolver, por exemplo, se o usuário digitar com letras maiusculas alguma das entradas válidas, a função
+    deve entender como certa a entrada, porém se o usuário digitar qualquer entrada que não seja alguma válida, logo
+    a função deve entrar em uma repetição até que o usuário digite uma entrada válida'''
+    nivel = raw_input('Para iniciar, escolha uma faixa de dificuldade: ( iniciante | amador | profissional):').lower()
+    while raw_input:
+        '''Se o usuário digitar a entrada: iniciante logo a função para e dá procedimento ao jogo senão verifica o 
+        próximo caso.'''
+        if nivel == niveis[0]:
+            print iniciante
+            break
         else:
-            print 'Insira um nivel válido!'
+            '''Se o usuário digitar a entrada: amador logo a função para e dá procedimento ao jogo senão verifica o 
+            próximo caso.'''
+            if nivel == niveis[1]:
+                print amador
+                break
+            else:
+                '''Se o usuário digitar a entrada: profissional a função para e dá procedimento ao jogo senão verifica o 
+                próximo caso.'''
+                if nivel == niveis[2]:
+                    print profissional
+                    break
+                else:
+                    '''Se nenhuma entrada for válida, a função retorna uma informação ao usuário que ele precisa informar
+                    um nível válido e então a função reinicia até o usuário inserir uma entrada válida para a próxima etapa
+                    do jogo'''
+                    if nivel != niveis[0] or niveis[1] or niveis[2]:
+                        print 'Tente um nível válido'
+                        return escolha_nivel()
+
+escolha_nivel()
