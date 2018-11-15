@@ -13,8 +13,11 @@ frase_nivel_iniciante = "Água __0__ pedra __1__ tanto __2__ até que __3__."
 frase_nivel_amador = "Em __0__ de cego __1__ tem __2__ é __3__."
 frase_nivel_profissional = "De __0__ e de __1__ todo __2__ tem um __3__."
 
+# as lacunas a serem preenchidas pelo jogador
+lacuna = ['__0__', '__1__', '__2__', '__3__']
+
 # as respostas corretas de cada nível.
-reposta_iniciante = ['mole', 'dura', 'bate', 'fura']
+resposta_iniciante = ['mole', 'dura', 'bate', 'fura']
 resposta_amador = ['terra', 'quem', 'olho', 'rei']
 resposta_profissional = ['medico', 'louco', 'mundo', 'pouco']
 
@@ -22,10 +25,10 @@ resposta_profissional = ['medico', 'louco', 'mundo', 'pouco']
 frases = [frase_nivel_iniciante, frase_nivel_amador, frase_nivel_profissional]
 
 # Lista das respostas definidas por nível.
-respostas = [reposta_iniciante, resposta_amador, resposta_profissional]
+respostas = [resposta_iniciante, resposta_amador, resposta_profissional]
 
 # Números de erros para cada nível.
-chances = ['5', '3', '1']
+chances = [6, 4, 2]
 
 # O usuário vai escolher um nível nesse momento.
 iniciante = frases[0]
@@ -42,7 +45,7 @@ def escolha_nivel():
     terá que resolver, por exemplo, se o usuário digitar com letras maiusculas alguma das entradas válidas, a função
     deve entender como certa a entrada, porém se o usuário digitar qualquer entrada que não seja alguma válida, logo
     a função deve entrar em uma repetição até que o usuário digite uma entrada válida'''
-    nivel = raw_input('Para iniciar, escolha uma faixa de dificuldade: ( iniciante | amador | profissional):').lower()
+    nivel = raw_input('Para iniciar, escolha uma faixa de dificuldade: (iniciante | amador | profissional):').lower()
     while raw_input:
         '''Se o usuário digitar a entrada: iniciante logo a função para e dá procedimento ao jogo senão verifica o 
         próximo caso.'''
@@ -69,4 +72,24 @@ def escolha_nivel():
                         print 'Tente um nível válido'
                         return escolha_nivel()
 
-escolha_nivel()
+def controlar_nivel():
+    if escolha_nivel() == iniciante:
+        return block_um()
+controlar_nivel()
+
+def block_um():
+    print 'Você tem ' + str(chances[0]) + ' tentativas para preencher os espaços'
+    resultado_um = raw_input('A palavra do espaço ' + lacuna[0] + ' é?').lower()
+    cont = chances[0]
+    if resultado_um == resposta_iniciante[0]:
+        print 'Resposta certa! Veja como está ficando a frase:'
+        print frases[0].replace(lacuna[0], resposta_iniciante[0])
+    else:
+        while cont > 0:
+            cont += -1
+            print 'Tente novamente, você tem ' + str(cont) + ' tentativas até o fim do jogo'
+            return resultado_um
+block_um()
+resultado_dois = raw_input('A palavra do espaço ' + lacuna[1] + ' é?').lower()
+resultado_tres = raw_input('A palavra do espaço ' + lacuna[2] + ' é?').lower()
+resultado_quatro = raw_input('A palavra do espaço ' + lacuna[3] + ' é?').lower()
