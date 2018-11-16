@@ -74,11 +74,11 @@ def escolha_nivel():
 
 def controlar_nivel():
     if escolha_nivel() == iniciante:
+        return 'Você tem ' + str(chances[0]) + ' tentativas para preencher os espaços'
         return block_um()
 controlar_nivel()
 
 def block_um():
-    print 'Você tem ' + str(chances[0]) + ' tentativas para preencher os espaços'
     resultado_um = raw_input('A palavra do espaço ' + lacuna[0] + ' é?').lower()
     cont = chances[0]
     if resultado_um == resposta_iniciante[0]:
@@ -86,9 +86,14 @@ def block_um():
         print frases[0].replace(lacuna[0], resposta_iniciante[0])
     else:
         while cont > 0:
-            cont += -1
+            cont = cont - 1
             print 'Tente novamente, você tem ' + str(cont) + ' tentativas até o fim do jogo'
-            return resultado_um
+            return block_um()
+            if cont == 0:
+                print 'Fim do jogo!'
+                break
+                exit()
+
 block_um()
 resultado_dois = raw_input('A palavra do espaço ' + lacuna[1] + ' é?').lower()
 resultado_tres = raw_input('A palavra do espaço ' + lacuna[2] + ' é?').lower()
