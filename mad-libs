@@ -1,8 +1,8 @@
 # coding=utf-8
 
 # nesse momento o jogador receberá as boas vindas!
-print 'Olá, Seja bem-vindo ao jogo: MAD-LIBS!'
 print '-' * 40
+print 'Olá, Seja bem-vindo ao jogo: MAD-LIBS!'
 print '-' * 40
 
 # os níveis disponíveis para o jogo.
@@ -30,71 +30,36 @@ respostas = [resposta_iniciante, resposta_amador, resposta_profissional]
 # Números de erros para cada nível.
 chances = [6, 4, 2]
 
-# O usuário vai escolher um nível nesse momento.
-iniciante = frases[0]
-amador = frases[1]
-profissional = frases[2]
-'''O nível será digitado pelo usuário, o programa deve esperar o
-jogador digitar o nível que deseja jogar, após p jogador selecionar
-um nivel válido o programa defe retornar a pergunta conforme o nível
-selecionado, caso não, o programa deve mostrar uma mensagem
-dizendo a ele que precisa informar um nivel válido'''
+def resposta_correta():
+	lacuna = raw_input().lower()
+	if lacuna == resposta_iniciante[0]:
+		print 'Resposta correta! Veja o resultado de sua frase'
+		print frases[0].replace(lacuna, lacuna[0])
+
+def frase_iniciante():
+	print frases[0]
+	print 'Complete os espaços para completar a frase'
+	print 'Qual a palavra de ' + lacuna[0] + '?: '
+	return resposta_correta()
 
 def escolha_nivel():
-    '''As entradas possíveis são iniciante, amador e profissional, porém existem entradas imprevissíveis que a função
-    terá que resolver, por exemplo, se o usuário digitar com letras maiusculas alguma das entradas válidas, a função
-    deve entender como certa a entrada, porém se o usuário digitar qualquer entrada que não seja alguma válida, logo
-    a função deve entrar em uma repetição até que o usuário digite uma entrada válida'''
-    nivel = raw_input('Para iniciar, escolha uma faixa de dificuldade: (iniciante | amador | profissional):').lower()
-    while raw_input:
-        '''Se o usuário digitar a entrada: iniciante logo a função para e dá procedimento ao jogo senão verifica o 
-        próximo caso.'''
-        if nivel == niveis[0]:
-            print iniciante
-            break
-        else:
-            '''Se o usuário digitar a entrada: amador logo a função para e dá procedimento ao jogo senão verifica o 
-            próximo caso.'''
-            if nivel == niveis[1]:
-                print amador
-                break
-            else:
-                '''Se o usuário digitar a entrada: profissional a função para e dá procedimento ao jogo senão verifica o 
-                próximo caso.'''
-                if nivel == niveis[2]:
-                    print profissional
-                    break
-                else:
-                    '''Se nenhuma entrada for válida, a função retorna uma informação ao usuário que ele precisa informar
-                    um nível válido e então a função reinicia até o usuário inserir uma entrada válida para a próxima etapa
-                    do jogo'''
-                    if nivel != niveis[0] or niveis[1] or niveis[2]:
-                        print 'Tente um nível válido'
-                        return escolha_nivel()
+	nivel = raw_input('Para começar informe o nivel desejado (Iniciante / Amador / Profissional):').lower()
+	while True:
+		if nivel == niveis[0]:
+			return frase_iniciante()
+			break
+		elif nivel == niveis[1]:
+			print frases[1]
+			break
+		elif nivel == niveis[2]:
+			print frases[2]
+			break
+		else:
+			if nivel != niveis[0] or niveis[1] or niveis[2]:
+				print 'Insira um nível válido'
+				return escolha_nivel()
 
-def controlar_nivel():
-    if escolha_nivel() == iniciante:
-        return 'Você tem ' + str(chances[0]) + ' tentativas para preencher os espaços'
-        return block_um()
-controlar_nivel()
+def iniciar_jogo():
+	escolha_nivel()
 
-def block_um():
-    resultado_um = raw_input('A palavra do espaço ' + lacuna[0] + ' é?').lower()
-    cont = chances[0]
-    if resultado_um == resposta_iniciante[0]:
-        print 'Resposta certa! Veja como está ficando a frase:'
-        print frases[0].replace(lacuna[0], resposta_iniciante[0])
-    else:
-        while cont > 0:
-            cont = cont - 1
-            print 'Tente novamente, você tem ' + str(cont) + ' tentativas até o fim do jogo'
-            return block_um()
-            if cont == 0:
-                print 'Fim do jogo!'
-                break
-                exit()
-
-block_um()
-resultado_dois = raw_input('A palavra do espaço ' + lacuna[1] + ' é?').lower()
-resultado_tres = raw_input('A palavra do espaço ' + lacuna[2] + ' é?').lower()
-resultado_quatro = raw_input('A palavra do espaço ' + lacuna[3] + ' é?').lower()
+iniciar_jogo()
