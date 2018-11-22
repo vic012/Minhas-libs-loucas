@@ -27,39 +27,70 @@ frases = [frase_nivel_iniciante, frase_nivel_amador, frase_nivel_profissional]
 # Lista das respostas definidas por nível.
 respostas = [resposta_iniciante, resposta_amador, resposta_profissional]
 
-# Números de erros para cada nível.
 chances = [6, 4, 2]
 
-def resposta_correta():
-	lacuna = raw_input().lower()
-	if lacuna == resposta_iniciante[0]:
-		print 'Resposta correta! Veja o resultado de sua frase'
-		print frases[0].replace('__0__', 'mole')
+def resposta_iniciante():
+	lacuna1 = raw_input('A palavra do ' + lacuna[0] + 'é?').lower()
+	lacuna2 = raw_input('A palavra do ' + lacuna[1] + 'é?').lower()
+	lacuna3 = raw_input('A palavra do ' + lacuna[2] + 'é?').lower()
+	lacuna4 = raw_input('A palavra do ' + lacuna[3] + 'é?').lower()
+	for x in resposta_iniciante:
+		print 'Você conseguiu, veja como ficou a frase:'
+		print 'end'
 
 def frase_iniciante():
 	print frases[0]
-	print 'Complete os espaços para completar a frase'
-	print 'Qual a palavra de ' + lacuna[0] + '?: '
-	return resposta_correta()
+	print 'Preencha as lacunas para completar o jogo, você tem ' + str(chances[0])
+
+def nivel_iniciante():
+	frase_iniciante()
+	resposta_iniciante()
+
+def nivel_amador():
+	frase_amador()
+	resposta_amador()
+	chances_amador()
+
+def nivel_profissional():
+	frase_profissional()
+	resposta_profissional()
+	chances_profissional()
 
 def escolha_nivel():
 	nivel = raw_input('Para começar informe o nivel desejado (Iniciante / Amador / Profissional):').lower()
 	while True:
 		if nivel == niveis[0]:
-			return frase_iniciante()
+			return nivel_iniciante()
 			break
 		elif nivel == niveis[1]:
-			print frases[1]
+			print nivel_amador()
 			break
 		elif nivel == niveis[2]:
-			print frases[2]
+			print nivel_profissional()
 			break
 		else:
 			if nivel != niveis[0] or niveis[1] or niveis[2]:
 				print 'Insira um nível válido'
 				return escolha_nivel()
 
-def iniciar_jogo():
+def inicia_jogo():
 	escolha_nivel()
 
-iniciar_jogo()
+inicia_jogo()	
+
+
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  if x == "banana":
+    break
+  print(x)
+
+  A função range ()
+Para percorrer um conjunto de códigos um número especificado de vezes, podemos usar a função range () ,
+A função range () retorna uma seqüência de números, iniciando em 0 por padrão e incrementa em 1 (por padrão) e termina em um número especificado.
+
+Exemplo
+Usando a função range ():
+
+for x in range(6):
+  print(x)
