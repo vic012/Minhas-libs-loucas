@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<title>Conhecimentos sobre HTML</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class="background">
+			<div class="titulo">
+				<h1>A rede mundia de computadores</h1>
+			</div>
+
+			<div id="conteudo">
+				<div class="cor-real">
+					<p class="texto1">A internet é fantástica, ela é capaz de conectar informações por todo o globo terrestre sem se preocupar com a distância ou um espaço de tempo.</p>
+				</div>
+
+				<div class="box">
+					<h3>Os tipos de arquivos presentes na WEB</h3>
+					<img class="img" src="./imagens/arquivo-web.png" alt="arquivos da WEB">
+					<div class="tabelas">
+						<ul>
+							<li>- Texto em Geral;</li>
+							<li>- HTML (Sigla para: Hypertext Markup Language);</li>
+							<li>- Imagens;</li>
+							<li>- Vídeos;</li>
+							<li>- Músicas.</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="box">
+					<h3>Os componentes da WEB</h3>
+					<img class="img" src="./imagens/componentes.jpg" alt="componentes web">
+					<div class="tabelas">
+						<ul>
+							<li>- Usuários: Pessoa que se utiliza das informações por meio de um computador ou dispositivo mobile;</li>
+							<li>- Navegador: Programa executado no computador do usuário responsável pela  exibição dos arquivos da WEB;</li>
+							<li>- HTTP: Protocolo que o navegador utiliza para se comunicar com os servidores e assim obter o trânsito de arquivos WEB (informações).</li>
+							<li>- Servidores: Computadores responsáveis por hospedar os arquivos da WEB.</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="box">
+					<h3>Fundamentos de HTML</h3>
+					<em><b>O que é HTML?</b></em>
+
+					<p>HTML é um documento repleto de informações que transitam na internet, ele é composto por:</p>
+					<img class="img" src="./imagens/htlm3.jpg" alt="html3">
+					<div class="tabelas">
+						<ul>
+							<li>- Textos;</li>
+							<li>- Marcações: Que é a aparência do conteúdo exibido;</li>
+							<li>- Links: ancoras que permite um usuário transitar de um HTML para outro HTML (páginas).</li>
+							<li>- Outros tipos de documentos, como vídeos, imagens, etc.</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="box">
+					<h3>Os HTML's são organizados por Tags</h3>
+					<em><b>O que são Tags?</b></em>
+
+					<p>Tag é uma marcação de HTML capaz de definir como o navegador deve renderizar, interpretar e incorporar a forma e os elementos aos textos e arquivos marcados do HTML.</p>
+
+					<div class="sub-sections">
+						<h4>Elas são estruturadas por tags de abertura e tags de fechamento.</h4>
+					</div>
+
+					<p><em>- tags de abertura:</em> Formadas por um símbolo (&lt;) seguido da "Tag descrição" e fechada por um símbolo (&gt;), ela é a responsável por marcar a origem de onde a Tag vai começar a caracterizar. Exemplo: &lt;span&gt; <b>texto</b>.</p>
+					<p><em>- tags de fechamento:</em> Assim como as Tags de aberturas as de fechamento tem os mesmos aspectos, só que se diferenciam em dois pontos, primeiro - possui uma (/) após o sinal (&lt;) e imediatamente antes da "tag descrição", segundo - ela demarca até onde o texto precisa ser caracterizado por essa tag.
+					Exemplo: texto &lt;/span&gt;.</p>
+					<p><em><b>- Exceção</b>:</em> Existem tags que não precisam de uma tag de fechamento, por exemplo a Tag &lt;br&gt;.</p>
+				</div>
+
+				<div class="box">
+					<h3>Tipos de Tags</h3>
+					<div class="tabelas">
+						<ul>
+							<li>Tag <b>negrito</b> - representada pelas tags &lt;b&gt; e &lt;/b&gt;, ela serve para realçar uma parte importante do conteúdo deixando-o em <b>Negrito</b>.</li>
+							<li>Tag <em>itálico</em> - representada pelas tags &lt;em&gt; e &lt;/em&gt;, serve para dar ênfase ao conteúdo deixando-o em <em>itálico.</em></li>
+							<li>Tag <a href="">link</a> - representada pelas tags &lt;a href="url"&gt; e &lt;/a&gt;, é utilizada para inserir um link de outro documento, por exemplo <a href="https://br.udacity.com">Udacity</a></li>
+							<li>Tag img - representada pelas tags &lt;img src="url" alt="texto que representa a imagem quando não é carregada"&gt; serve para inserir um conteúdo do tipo Imagens. Não necessita de tag de fechamento.</li>
+							<li>Tag br - representada pela tag &lt;br&gt; é usada para quebrar o texto em uma linha <br> E continuar sua sequencia em outra linha. Essa tag não necessita de uma tag de fechamento.</li>
+							<li>Tag span - representada pela tag &lt;span&gt; e &lt;/span&gt; é uma tag auxiliadora, ela pode ser usada para estilizar uma seção com CSS por meio de uma "Class" ou "ID" ou usada para características de Javascript. Quando utilizada no HTML sem ser estilizada não apresenta nenhuma <span>ação</span> aparente.</li>
+							<li>Tag div - representada pela tag &lt;div&gt; e &lt;/div&gt;, serve para criar seções de texto ou divisões de conteúdos em bloco.</li>
+							<li>Tag p - representada pelas tags &lt;p&gt; e &lt;/p&gt; representa um parágrafo de conteúdo.</li>
+							<li>Tag h - Representada pelas tags &lt;h1&gt; e &lt;/h1&gt;, Essa tag tem uma sequencia numérica de 1 até 6 que serve para classificar a ordem do título ou da "cabeça" tradução da palavra Head, de onde vem o H da tag.</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="box">
+					<h3>A estrutura do HTML</h3>
+
+					<img src="./imagens/estrutura-html.png" alt="Estrutura HTML">
+					<ul>
+						<li>Primeiro é necessário informar ao navegador o tipo do documento que será renderizado, no caso do HTML que já está em sua versão 5, será informado assim: <b>&lt;!DOCTYPE html&gt;</b>.</li>
+						<li>A tag <b>&lt;html&gt;</b> representa a abertura do documento HTML, Nela ainda conterá a linguagem utilizada no HTML que será informado por meio do atributo lang="pt-br" no final do documento essa tag será fechada assim: <b>&lt;/html&gt;</b>.</li>
+						<li>Em seguida vem a tag <b>&lt;head&gt;</b> que representa o cabeçalho da página, nela estará contida duas tags báscias, existem outras várias, porém abordaremos aqui as duas básicas, que são:</li>
+						<li>A tag <b>&lt;meta charset="utf-8"&gt;</b> que informa ao navegar que o documento vai utilizar acentuação no corpo do html;</li>
+						<li>A tag <b>&lt;title&gt;</b>, que é o título da página que será exibido na aba do navegador.</li>
+						<li>A tag <b>&lt;body&gt;</b> indica o corpo do documento, aqui estará o documento que será exibido no navegador.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
