@@ -34,7 +34,7 @@ def resposta_correta():
 	lacuna = raw_input().lower()
 	if lacuna == resposta_iniciante[0]:
 		print 'Resposta correta! Veja o resultado de sua frase'
-		print frases[0].replace(lacuna, lacuna[0])
+		print frases[0].replace('__0__', 'mole')
 
 def frase_iniciante():
 	print frases[0]
