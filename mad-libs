@@ -29,22 +29,47 @@ respostas = [resposta_iniciante, resposta_amador, resposta_profissional]
 
 chances = [6, 4, 2]
 
+resposta_do_usuario = []
+
+tentativas_restantes = []
+
 def resposta_iniciante():
-	lacuna1 = raw_input('A palavra do ' + lacuna[0] + 'é?').lower()
-	lacuna2 = raw_input('A palavra do ' + lacuna[1] + 'é?').lower()
-	lacuna3 = raw_input('A palavra do ' + lacuna[2] + 'é?').lower()
-	lacuna4 = raw_input('A palavra do ' + lacuna[3] + 'é?').lower()
-	for x in resposta_iniciante:
-		print 'Você conseguiu, veja como ficou a frase:'
-		print 'end'
+	resposta_certa = respostas[0]
+	tentativas = chances[0]
+	while tentativas > len(tentativas_restantes):
+		if resposta_do_usuario == resposta_certa:
+			print 'parabéns'
+			break
+		else:
+			while True:
+				contagem = len(tentativas_restantes)
+				tentativas = tentativas - contagem
+				tentativas_restantes.append(tentativas)
+				print 'Tente novamente, você ainda tem ' + str(tentativas) + ' chances.'
+				return frase_iniciante()
+				if tentativas == 0:
+					break
+
+
+
+
 
 def frase_iniciante():
 	print frases[0]
-	print 'Preencha as lacunas para completar o jogo, você tem ' + str(chances[0])
+	print 'Preencha as lacunas para completar o jogo'
+	lacuna_um = raw_input('A palavra da ' +  str(lacuna[0]) + ' é?').lower()
+	resposta_do_usuario.append(lacuna_um)
+	lacuna_dois = raw_input('A palavra da ' +  str(lacuna[1]) + ' é?').lower()
+	resposta_do_usuario.append(lacuna_dois)
+	lacuna_tres = raw_input('A palavra da ' + str(lacuna[2]) + ' é?').lower()
+	resposta_do_usuario.append(lacuna_tres)
+	lacuna_quatro = raw_input('A palavra da ' + str(lacuna[3]) + ' é?').lower()
+	resposta_do_usuario.append(lacuna_quatro)
+	return resposta_iniciante()
 
 def nivel_iniciante():
 	frase_iniciante()
-	resposta_iniciante()
+	
 
 def nivel_amador():
 	frase_amador()
@@ -76,21 +101,4 @@ def escolha_nivel():
 def inicia_jogo():
 	escolha_nivel()
 
-inicia_jogo()	
-
-
-fruits = ["apple", "banana", "cherry"]
-for x in fruits:
-  if x == "banana":
-    break
-  print(x)
-
-  A função range ()
-Para percorrer um conjunto de códigos um número especificado de vezes, podemos usar a função range () ,
-A função range () retorna uma seqüência de números, iniciando em 0 por padrão e incrementa em 1 (por padrão) e termina em um número especificado.
-
-Exemplo
-Usando a função range ():
-
-for x in range(6):
-  print(x)
+inicia_jogo()
