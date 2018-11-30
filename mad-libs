@@ -1,10 +1,5 @@
 # coding=utf-8
 
-# nesse momento o jogador receberá as boas vindas!
-print '-' * 40
-print 'Olá, Seja bem-vindo ao jogo: MAD-LIBS!'
-print '-' * 40
-
 # os níveis disponíveis para o jogo.
 niveis = ['iniciante', 'amador', 'profissional']
 
@@ -21,144 +16,48 @@ resposta_iniciante = ['mole', 'dura', 'bate', 'fura']
 resposta_amador = ['terra', 'quem', 'olho', 'rei']
 resposta_profissional = ['quem', 'ferro', 'ferro', 'ferido']
 
-# Lista das frases definidas por nível.
-frases = [frase_nivel_iniciante, frase_nivel_amador, frase_nivel_profissional]
+# as tentativas que o usuário terá para acertar a frase
+tentativas = [6,4,2]
 
-# Lista das respostas definidas por nível.
-respostas = [resposta_iniciante, resposta_amador, resposta_profissional]
+# nesse momento o jogador receberá as boas vindas!
+print '-' * 40
+print 'Olá, Seja bem-vindo ao jogo: MAD-LIBS!'
+print '-' * 40
 
-chances = [6, 4, 2]
+def inicia_o_jogo(pergunta, resposta):
+    """
 
-resposta_do_usuario = []
-
-tentativas_restantes = [1]
-
-
-def resposta_iniciante():
-    resposta_certa = respostas[0]
-    tentativas = chances[0]
-    while tentativas > len(tentativas_restantes):
-        if resposta_do_usuario == resposta_certa:
-            print 'Muito bem você terminou o jogo sua frase completa é:'
-            print 'Água mole pedra dura tanto bate até que fura'
-            break
-        else:
-            while True:
-                contagem = len(tentativas_restantes)
-                tentativas = tentativas - contagem
-                tentativas_restantes.append(tentativas)
-                print 'Tente novamente, você ainda tem ' + str(tentativas) + ' chances.'
-                return frase_iniciante()
-                if tentativas == 0:
-                    break
+    """
+    for answer in resposta:
+        resposta_do_usuario = raw_input("Qual a palavra que complementa o espaço " + lacuna[resposta.index (answer)]).lower()
+        while resposta_do_usuario != answer:
+            resposta_do_usuario = raw_input('Resposta invalida, tente novamente, Qual a palavra que complementa o espaço ' + lacuna[resposta.index(answer)]).lower()
+        pergunta = pergunta.replace(lacuna[resposta.index(answer)], resposta_do_usuario)
+        print 'Muito bem você acertou, veja como está a frase'
+        print pergunta
+    print 'parabéns, você conseguiu'
 
 
-def resposta_amador():
-    resposta_certa = respostas[1]
-    tentativas = chances[1]
-    while tentativas > len(tentativas_restantes):
-        if resposta_do_usuario == resposta_certa:
-            print 'Muito bem você terminou o jogo sua frase completa é:'
-            print 'Em terra de cego quem tem olho é Rei'
-            break
-        else:
-            while True:
-                contagem = len(tentativas_restantes)
-                tentativas = tentativas - contagem
-                tentativas_restantes.append(tentativas)
-                print 'Tente novamente, você ainda tem ' + str(tentativas) + ' chances.'
-                return frase_amador()
-                if tentativas == 0:
-                    break
+def seleciona_nivel():
+    """
+    Esse método permite ao jogador escolher um nível de dificuldade
+    assim que o jogo é iniciado.
+    """
+    nivel = raw_input("Escolha um nível: ( iniciante | amador | profissional):").lower()
+    if nivel == niveis[0]:
+        print 'Você precisa completar a frase para finalizar o seu jogo'
+        print frase_nivel_iniciante
+        return inicia_o_jogo(frase_nivel_iniciante, resposta_iniciante)
+    elif nivel == niveis[1]:
+        print 'Você precisa completar a frase para finalizar o seu jogo'
+        print frase_nivel_amador
+        return inicia_o_jogo(frase_nivel_amador, resposta_amador)
+    elif nivel == niveis[2]:
+        print 'Você precisa completar a frase para finalizar o seu jogo'
+        print frase_nivel_profissional
+        return inicia_o_jogo(frase_nivel_profissional, resposta_profissional)
+    elif nivel != niveis[0] or niveis[1] or niveis[2]:
+        print 'Insira um nível válido'
+        return seleciona_nivel()
 
-def resposta_profissional():
-    resposta_certa = respostas[2]
-    tentativas = chances[2]
-    while tentativas > len(tentativas_restantes):
-        if resposta_do_usuario == resposta_certa:
-            print 'Muito bem você terminou o jogo sua frase completa é:'
-            print 'Quem com ferro fere, com ferro será ferido'
-            break
-        else:
-            while True:
-                contagem = len(tentativas_restantes)
-                tentativas = tentativas - contagem
-                tentativas_restantes.append(tentativas)
-                print 'Tente novamente, você ainda tem ' + str(tentativas) + ' chances.'
-                return frase_profissional()
-                if tentativas == 0:
-                    break
-
-def frase_iniciante():
-    print frases[0]
-    print 'Preencha as lacunas para completar o jogo'
-    lacuna_um = raw_input('A palavra da ' + str(lacuna[0]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_um)
-    lacuna_dois = raw_input('A palavra da ' + str(lacuna[1]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_dois)
-    lacuna_tres = raw_input('A palavra da ' + str(lacuna[2]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_tres)
-    lacuna_quatro = raw_input('A palavra da ' + str(lacuna[3]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_quatro)
-    return resposta_iniciante()
-
-def frase_amador():
-    print frases[1]
-    print 'Preencha as lacunas para completar o jogo'
-    lacuna_um = raw_input('A palavra da ' + str(lacuna[0]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_um)
-    lacuna_dois = raw_input('A palavra da ' + str(lacuna[1]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_dois)
-    lacuna_tres = raw_input('A palavra da ' + str(lacuna[2]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_tres)
-    lacuna_quatro = raw_input('A palavra da ' + str(lacuna[3]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_quatro)
-    return resposta_amador()
-
-def frase_profissional():
-    print frases[2]
-    print 'Preencha as lacunas para completar o jogo'
-    lacuna_um = raw_input('A palavra da ' + str(lacuna[0]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_um)
-    lacuna_dois = raw_input('A palavra da ' + str(lacuna[1]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_dois)
-    lacuna_tres = raw_input('A palavra da ' + str(lacuna[2]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_tres)
-    lacuna_quatro = raw_input('A palavra da ' + str(lacuna[3]) + ' é?').lower()
-    resposta_do_usuario.append(lacuna_quatro)
-    return resposta_profissional()
-
-
-def nivel_iniciante():
-    frase_iniciante()
-
-
-def nivel_amador():
-    frase_amador()
-
-def nivel_profissional():
-    frase_profissional()
-
-def escolha_nivel():
-    nivel = raw_input('Para começar informe o nivel desejado (Iniciante / Amador / Profissional):').lower()
-    while True:
-        if nivel == niveis[0]:
-            return nivel_iniciante()
-            break
-        elif nivel == niveis[1]:
-            print nivel_amador()
-            break
-        elif nivel == niveis[2]:
-            print nivel_profissional()
-            break
-        else:
-            if nivel != niveis[0] or niveis[1] or niveis[2]:
-                print 'Insira um nível válido'
-                return escolha_nivel()
-
-
-def inicia_jogo():
-    escolha_nivel()
-
-
-inicia_jogo()
+seleciona_nivel()
