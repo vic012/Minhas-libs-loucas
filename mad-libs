@@ -4,17 +4,19 @@
 niveis = ['iniciante', 'amador', 'profissional']
 
 # as frases de cada nível.
-frase_nivel_iniciante = "Água __0__ pedra __1__ tanto __2__ até que __3__."
-frase_nivel_amador = "Em __0__ de cego __1__ tem __2__ é __3__."
-frase_nivel_profissional = "__0__ com __1__ fere, com __2__ será __3__."
+frase_nivel_iniciante = "As pessoas __0__ lembram o passado com __1__, alegram-se com o __2__ e encaram o futuro sem __3__."
+frase_nivel_amador = "fácil é sair com várias __0__ ao longo da vida. difícil é __1__ que pouquíssimas delas vão te " \
+                     "aceitar como você é e fazer feliz por inteiro. difícil é __2__ o coração de alguém. saber que se é __3__ amado."
+frase_nivel_profissional = "Ele supõe __0__ alguma coisa e não sabe, __1__ eu, se não sei, tampouco suponho saber " \
+                           "parece que sou um __2__ mais sábio que ele exatamente por não supor que __3__ o que não sei."
 
 # as lacunas a serem preenchidas pelo jogador
 lacuna = ['__0__', '__1__', '__2__', '__3__']
 
 # as respostas corretas de cada nível.
-resposta_iniciante = ['mole', 'dura', 'bate', 'fura']
-resposta_amador = ['terra', 'quem', 'olho', 'rei']
-resposta_profissional = ['quem', 'ferro', 'ferro', 'ferido']
+resposta_iniciante = ['felizes', 'gratidão', 'presente', 'medo']
+resposta_amador = ['pessoas', 'entender', 'ocupar', 'realmente']
+resposta_profissional = ['saber', 'enquanto', 'pouco', 'saiba']
 
 # as tentativas que o usuário terá para acertar a frase
 tentativas = [6,4,2]
@@ -24,14 +26,27 @@ print '-' * 40
 print 'Olá, Seja bem-vindo ao jogo: MAD-LIBS!'
 print '-' * 40
 
-def inicia_o_jogo(pergunta, resposta):
+def inicia_o_jogo(pergunta, resposta, tentativas):
     """
-
+    nesse momento o usuário vai tentar completar a frase de acordo com as lacunas exigidas pelo nível que selecionou
+    a função recebe a pergunta, a lista das respostas e o número de tentativas, assim o programa faz a pergunta
+    de acordo com o nível, em seguida avaliar se a resposta que o usuário preenche está no parâmetro resposta, caso
+    a resposta esteja certa, a frase é reestruturada com a resposta certa e pergunta a próxima lacuna, mas caso o
+    usuário erre a resposta ele terá uma chance decrecida até findar-se o jogo, caso ele erre, o jogo re-inicia até
+    que ele consiga completar algum nível.
     """
+    print 'Você tem ' + str(tentativas) + ' chances de erras!'
+    print pergunta
+    chances = []
     for answer in resposta:
-        resposta_do_usuario = raw_input("Qual a palavra que complementa o espaço " + lacuna[resposta.index (answer)]).lower()
+        resposta_do_usuario = raw_input("Qual a palavra que complementa o espaço " + lacuna[resposta.index (answer)] + ' ?').lower()
         while resposta_do_usuario != answer:
-            resposta_do_usuario = raw_input('Resposta invalida, tente novamente, Qual a palavra que complementa o espaço ' + lacuna[resposta.index(answer)]).lower()
+            chances.append(1)
+            chances_restante = tentativas - len(chances)
+            resposta_do_usuario = raw_input('Resposta invalida, Você ainda tem ' + str(chances_restante) + ' chances, Qual a palavra que complementa o espaço ' + lacuna[resposta.index(answer)] + ' ?').lower()
+            if chances_restante == 0:
+                print 'Você perdeu! Comece novamente!'
+                return seleciona_nivel ()
         pergunta = pergunta.replace(lacuna[resposta.index(answer)], resposta_do_usuario)
         print 'Muito bem você acertou, veja como está a frase'
         print pergunta
@@ -40,24 +55,25 @@ def inicia_o_jogo(pergunta, resposta):
 
 def seleciona_nivel():
     """
-    Esse método permite ao jogador escolher um nível de dificuldade
-    assim que o jogo é iniciado.
+    Esse método permite ao jogador escolher um nível de dificuldade assim que o jogo é iniciado e passa à função inicia_o_jogo
+    os parâmetros necessários para funcionar corretamente o Mad_libs.
     """
     nivel = raw_input("Escolha um nível: ( iniciante | amador | profissional):").lower()
     if nivel == niveis[0]:
-        print 'Você precisa completar a frase para finalizar o seu jogo'
-        print frase_nivel_iniciante
-        return inicia_o_jogo(frase_nivel_iniciante, resposta_iniciante)
+        return inicia_o_jogo(frase_nivel_iniciante, resposta_iniciante, tentativas[0])
     elif nivel == niveis[1]:
-        print 'Você precisa completar a frase para finalizar o seu jogo'
-        print frase_nivel_amador
-        return inicia_o_jogo(frase_nivel_amador, resposta_amador)
+        return inicia_o_jogo(frase_nivel_amador, resposta_amador, tentativas[1])
     elif nivel == niveis[2]:
-        print 'Você precisa completar a frase para finalizar o seu jogo'
-        print frase_nivel_profissional
-        return inicia_o_jogo(frase_nivel_profissional, resposta_profissional)
-    elif nivel != niveis[0] or niveis[1] or niveis[2]:
+        return inicia_o_jogo(frase_nivel_profissional, resposta_profissional, tentativas[2])
+    else:
         print 'Insira um nível válido'
         return seleciona_nivel()
 
 seleciona_nivel()
+
+'''
+links utilizados no projeto:
+https://www.pensador.com/frases_de_grandes_pensadores/
+https://stackoverflow.com/questions/22747092/valueerror-substring-not-found-what-am-i-doing-wrong
+https://www.w3schools.com/python/showpython.asp?filename=demo_for
+'''
