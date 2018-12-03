@@ -1,0 +1,42 @@
+# coding=utf-8
+
+import re
+
+#nesse ponto será possível acessar os históricos das compras e seus valores
+compras = open('C:\Users\Henrique\Desktop\Teste.txt', 'r')
+valor_compra = open('C:\Users\Henrique\Desktop\Valorcompra.txt', 'r')
+#nesse ponto será feito uma lista contendo os históricos dos pagamentos com uma variável pagamento
+pagamento = open('C:\Users\Henrique\Desktop\pagamentos.txt', 'r')
+#nesse ponto será feito uma lista contendo os históricos das devoluçoes com uma variável devolucao
+devolucao = open('C:\Users\Henrique\Desktop\devolucao.txt', 'r')
+
+#nessa linha será adcionado um filtro usado para tirar os númeroas das strings
+filtro = re.compile('([0-9]+)')
+
+#essas listas vão receber os números das notas fiscais retirados das strings
+list_compras = []
+
+	
+'''
+def conferencias(historico, valor):
+	for item in historico:
+		print item
+		for item in valor:
+			print item
+	print 'valor invalido'
+'''
+
+def compra(compras):
+	for item in compras:
+		resp = filtro.findall(item)
+		list_compras.append(resp)
+		print list_compras
+		#return conferencias(list_compras, pagamento)
+compra(compras)
+
+
+'''
+Links utilizados para o projeto:
+https://www.scriptbrasil.com.br/forum/topic/181852-fun%C3%A7%C3%A3o-para-devolver-apenas-n%C3%BAmeros-da-string/
+http://www.devfuria.com.br/python/manipulando-arquivos-de-texto/
+'''
