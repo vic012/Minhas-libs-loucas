@@ -1,42 +1,33 @@
-# coding=utf-8
+# Coding: "utf-8"
 
 import re
+#==========Bloco de importação================
+#Método utilizado para ler o arquivo
+historicoCompras = open("compras.txt", "r")
+pagamentos = open("pagamentos.txt", "r")
+#==========Bloco de importação================
 
-#nesse ponto será possível acessar os históricos das compras e seus valores
-compras = open('C:\Users\Henrique\Desktop\Teste.txt', 'r')
-valor_compra = open('C:\Users\Henrique\Desktop\Valorcompra.txt', 'r')
-#nesse ponto será feito uma lista contendo os históricos dos pagamentos com uma variável pagamento
-pagamento = open('C:\Users\Henrique\Desktop\pagamentos.txt', 'r')
-#nesse ponto será feito uma lista contendo os históricos das devoluçoes com uma variável devolucao
-devolucao = open('C:\Users\Henrique\Desktop\devolucao.txt', 'r')
+#==================================
+#Método utilizado para debbuger====
+#apague os (#) e execute o programa
+#for item in pagamentos:
+#    print item
+#==================================
 
-#nessa linha será adcionado um filtro usado para tirar os númeroas das strings
-filtro = re.compile('([0-9]+)')
+#Método que retira o número da NF das compras para serem pesquizados
+numerosNotasfiscais = re.compile('([0-9]+)')
 
-#essas listas vão receber os números das notas fiscais retirados das strings
-list_compras = []
 
-	
-'''
-def conferencias(historico, valor):
-	for item in historico:
-		print item
-		for item in valor:
-			print item
-	print 'valor invalido'
-'''
 
-def compra(compras):
+def compras(compras):
 	for item in compras:
-		resp = filtro.findall(item)
-		list_compras.append(resp)
-		print list_compras
-		#return conferencias(list_compras, pagamento)
-compra(compras)
+		resultado = re.search(numerosNotasfiscais, item)
+		
 
-
+compras(historicoCompras)
 '''
-Links utilizados para o projeto:
+======Links úteis=========
+https://www.w3schools.com/python/python_regex.asp
 https://www.scriptbrasil.com.br/forum/topic/181852-fun%C3%A7%C3%A3o-para-devolver-apenas-n%C3%BAmeros-da-string/
 http://www.devfuria.com.br/python/manipulando-arquivos-de-texto/
 https://www.w3schools.com/python/ref_string_find.asp
